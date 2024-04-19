@@ -1,6 +1,6 @@
 # Some set up for the application 
 
-from flask import Flask
+from flask import Flask, g
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
@@ -19,7 +19,7 @@ def create_app():
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_root_password.txt').readline().strip()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'TechDB'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'TechDB'
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
@@ -30,10 +30,17 @@ def create_app():
     # Example: localhost:8001
     @app.route("/")
     def welcome():
-        
-        return "<h1>Welcome to TechDB</h1>"
-
+        database = db.connect()
+        cursor = database.cursor()
+        cursor.execute("SELECT lastName FROM TechDB.Users WHERE firstName = 'Jacob';")
+        result = cursor.fetchone()
+        if result:
+            return str(result[0])
+        else:
+            return ""
+    
     # Blueprint stuff
     
     # Don't forget to return the app object
     return app
+
