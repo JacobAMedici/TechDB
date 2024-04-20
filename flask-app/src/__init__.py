@@ -41,12 +41,14 @@ def create_app():
     from src.register.register import register
     from src.peripherals.peripherals import peripherals
     from src.phones.phones import phones
+    from src.articles.articles import articles
 
     app.register_blueprint(laptops, url_prefix='/laptops')
     app.register_blueprint(login, url_prefix='/login')
     app.register_blueprint(register, url_prefix='/register')
     app.register_blueprint(peripherals, url_prefix='/peripherals')
     app.register_blueprint(phones, url_prefix='/phones')
+    app.register_blueprint(articles, url_prefix='/articles')
 
     
     # Don't forget to return the app object
