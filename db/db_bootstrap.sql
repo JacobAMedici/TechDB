@@ -600,9 +600,9 @@ VALUES ('Linear', 2, 'Red', 2, 'CherryMX Red'),
 ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
 
 INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)
-VALUES  (344, 230, 18, 3456, 2160, 16, 1024, 60, 86, 1.86, true, 'RTX 4070', 'i9-13900H', 'Dell XPS 15', 'Windows 11'),
-        (280, 214, 6.4, 2388, 1668, 8, 1024, 120, 41, 0.685, false, 'implicit', 'Apple M2', 'iPad Pro 12.9 Inch', 'Apple iOS'),
-        (356, 248, 17, 3456, 2234, 32, 1024, 120, 100, 2.16, true, 'implicit', 'Apple M3 Max', 'Macbook Pro 2024 16in', 'MacOS');
+VALUES (344, 230, 18, 3456, 2160, 16, 1024, 60, 86, 1.86, true, 'RTX 4070', 'i9-13900H', 'Dell XPS 15', 'Windows 11'),
+(280, 214, 6.4, 2388, 1668, 8, 1024, 120, 41, 0.685, false, 'implicit', 'Apple M2', 'iPad Pro 12.9 Inch', 'Apple iOS'),
+(356, 248, 17, 3456, 2234, 32, 1024, 120, 100, 2.16, true, 'implicit', 'Apple M3 Max', 'Macbook Pro 2024 16in', 'MacOS');
 
 INSERT INTO Headphones(numDrivers, bluetooth, microphone, description, headphoneName)
 VALUES (8, true, false, 'Comfortable, padded, and open-backed headphones.', 'Expensive headphones'),
@@ -612,39 +612,32 @@ VALUES (8, true, false, 'Comfortable, padded, and open-backed headphones.', 'Exp
 
 INSERT INTO Tablet(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, tabletName)
 VALUES (280, 216, 6, 2400, 1080, 16, 512, 'Paper sized'),
-      (346, 195, 10, 3840, 2160, 16, 1000, 'Studio drawing tablet'),
-      (280, 214, 6, 2388, 1668, 32, 512, 'Iphone');
+(346, 195, 10, 3840, 2160, 16, 1000, 'Studio drawing tablet'),
+(280, 214, 6, 2388, 1668, 32, 512, 'Iphone');
 
 
 INSERT INTO Mouse(description, sensorType, size, weight, freeScrolling, mouseName)
-VALUES ('Comfortable, ergonomic mouse fit for the office.', 'Optical', '4.72 x 3.11 x 3.09 inches',
-       130.408, false, 'Logitech MX Vertical Wireless Mouse'),
-      ('High-end gaming mouse to last a lifetime.', 'Optical', '4.47 x 2.38 x 1.47 inches',
-       98.65634, false, 'Tt eSPORTS Ventus R'),
-   ('Lightweight and ergonomic wired mouse.', 'Optical', '4.72 x 2.48 x 0.04 inches', 69, false,
-    'Model O- (Minus) Compact Wired Gaming Mouse');
+VALUES ('Comfortable, ergonomic mouse fit for the office.', 'Optical', '4.72 x 3.11 x 3.09 inches', 130.408, false, 'Logitech MX Vertical Wireless Mouse'),
+('High-end gaming mouse to last a lifetime.', 'Optical', '4.47 x 2.38 x 1.47 inches', 98.65634, false, 'Tt eSPORTS Ventus R'),
+('Lightweight and ergonomic wired mouse.', 'Optical', '4.72 x 2.48 x 0.04 inches', 69, false, 'Model O- (Minus) Compact Wired Gaming Mouse');
 
 
-INSERT INTO Phone(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,
-                 batteryLength, weight, interface, phoneName)
+INSERT INTO Phone(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,batteryLength, weight, interface, phoneName)
 VALUES (149.6, 71.45, 8.25, 1179, 2556, 6, 1000, 60, 16, 171, 'USB-C', 'Iphone 15'),
-      (146.3, 70.9, 7.6, 2340, 1080, 8, 512, 120, 10, 168.1127, 'USB-C', 'Samsung Galaxy s23'),
-      (146.7, 71.5, 7.65, 2532, 1170, 4, 128, 60, 17, 174, 'Lighting connector', 'Iphone 13');
+(146.3, 70.9, 7.6, 2340, 1080, 8, 512, 120, 10, 168.1127, 'USB-C', 'Samsung Galaxy s23'),
+(146.7, 71.5, 7.65, 2532, 1170, 4, 128, 60, 17, 174, 'Lighting connector', 'Iphone 13');
 
 
 INSERT INTO Post(title, contents)
-VALUES ('Cheap headphones cord breaks', 'I bought the cheap headphones 2 weeks ago. They were working great until
-last night when the cord snapped out of nowhere.'),
-   ('Tt Ventus R review', 'I bought the Tt Ventus R mouse in order to review them on my YouTube channel.
-It arrived 3 days ago and I cannot believe I am saying it but it is worth the money.'),
-   ('Looking for new phone', 'I am in the market for a new phone to replace my Iphone 10.
-Does anyone have any good information on some of the newer editions?');
+VALUES ('Cheap headphones cord breaks', 'I bought the cheap headphones 2 weeks ago. They were working great until last night when the cord snapped out of nowhere.'),
+('Tt Ventus R review', 'I bought the Tt Ventus R mouse in order to review them on my YouTube channel. It arrived 3 days ago and I cannot believe I am saying it but it is worth the money.'),
+('Looking for new phone', 'I am in the market for a new phone to replace my Iphone 10. Does anyone have any good information on some of the newer editions?');
 
 INSERT INTO LaptopPorts (laptopID, port)
- VALUES (1, 'USB-C'),
- (1, 'Dell Charger'),
- (1, 'USB-A'),
- (1, 'HDMI');
+VALUES (1, 'USB-C'),
+(1, 'Dell Charger'),
+(1, 'USB-A'),
+(1, 'HDMI');
 
 INSERT INTO MakesKeyboard (manufacturerID, KeyboardID)
 VALUES (6, 1),
