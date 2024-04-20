@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
-
 peripherals = Blueprint('peripherals', __name__)
 
 @peripherals.route('/')
@@ -25,6 +24,10 @@ def delete_mouse(mouse_id):
 def add_mouse():
     return "This will add a mouse with the appropriate fields"
 
+@peripherals.route('/mice', methods=['POST'])
+def favorite_mouse():
+    return "This is where we will favorite the mouse of mouse_id"
+
 @peripherals.route('/keyboards')
 def keyboards_page():
     return "This will be a search bar for keyboards"
@@ -40,6 +43,10 @@ def delete_keyboard(keyboard_id):
 @peripherals.route('/keyboards/add', methods=['POST'])
 def add_keyboard():
     return "This will add a keyboard with the appropriate fields"
+
+@peripherals.route('/keyboards', methods=['POST'])
+def favorite_keyboard():
+    return "This is where we will favorite the keyboard of keyboard_id"
 
 @peripherals.route('/headsets')
 def headsets_page():
@@ -57,6 +64,10 @@ def delete_headset(headset_id):
 def add_headset():
     return "This will add a headset with the appropriate fields"
 
+@peripherals.route('/headsets', methods=['POST'])
+def favorite_headset():
+    return "This is where we will favorite the headset of headset_id"
+
 @peripherals.route('/tablets') 
 def tablets_page():
     return "This will be a search bar for tablets"
@@ -72,3 +83,7 @@ def delete_tablet(tablet_id):
 @peripherals.route('/tablets/add', methods=['POST'])
 def add_tablet():
     return "This will add a tablet with the appropriate fields"
+
+@peripherals.route('/tablets', methods=['POST'])
+def favorite_tablet():
+    return "This is where we will favorite the tablet of tablet_id"

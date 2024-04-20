@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
-
 phones = Blueprint('phones', __name__)
 
 @phones.route('/', methods=['GET'])
@@ -20,3 +19,7 @@ def delete_phone(phone_id):
 @phones.route('/add', methods=['POST'])
 def add_phone():
     return "This will add a phone with the appropriate fields"
+
+@phones.route('/<phone_id>', methods=['POST'])
+def favorite_phone(phone_id):
+    return "This is where we will favorite the phone of phone_id"
