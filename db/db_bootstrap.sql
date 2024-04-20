@@ -641,49 +641,79 @@ It arrived 3 days ago and I cannot believe I am saying it but it is worth the mo
 Does anyone have any good information on some of the newer editions?');
 
 INSERT INTO LaptopPorts (laptopID, port)
-    VALUES (1, 'USB-C'), (1, 'Dell Charger'), (1, 'USB-A'), (1, 'HDMI');
+ VALUES (1, 'USB-C'),
+ (1, 'Dell Charger'),
+ (1, 'USB-A'),
+ (1, 'HDMI');
 
 INSERT INTO MakesKeyboard (manufacturerID, KeyboardID)
-    VALUES (6, 1), (9, 2), (5, 3);
+VALUES (6, 1),
+(9, 2),
+(5, 3);
 
 INSERT INTO MakesHeadphones (manufacturerID, HeadphoneID)
-    VALUES (5,1), (1, 2), (6, 3);
+VALUES (5,1),
+(1, 2),
+(6, 3);
 
 INSERT INTO MakesLaptop (manufacturerID, laptopID)
-    VALUES (5,1), (1, 2), (6, 3);
+VALUES (5,1),
+(1, 2),
+(6, 3);
 
 INSERT INTO MakesMouse (manufacturerID, mouseID)
-    VALUES (5,1), (1, 2), (6, 3);
+VALUES (5,1),
+(1, 2),
+(6, 3);
 
 INSERT INTO MakesPhone (manufacturerID, phoneID)
-    VALUES (5,1), (1, 2), (6, 3);
+VALUES (5,1),
+(1, 2),
+(6, 3);
 
 INSERT INTO MakesSwitch (switchID, manufacturerID)
-    VALUES (1,5), (2, 1), (3, 6);
+VALUES (1,5),
+(2, 1),
+(3, 6);
 
 INSERT INTO MakesTablet (manufacturerID, tabletID)
-    VALUES (5,1), (1, 2), (6, 3);
+VALUES (5,1),
+(1, 2),
+(6, 3);
 
 INSERT INTO UserPost (userID, title)
-    VALUES (1, 'Cheap headphones cord breaks'), (2, 'Tt Ventus R review');
+VALUES (1, 'Cheap headphones cord breaks'),
+(2, 'Tt Ventus R review');
 
 INSERT INTO ManufacturerPost (manufacturerID, title)
-    VALUES (3, 'Looking for new phone');
+VALUES (3, 'Looking for new phone');
 
 INSERT INTO FavoriteKeyboard(userID, KeyboardID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
 
 INSERT INTO FavoriteLaptop(userID, laptopID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
 
 INSERT INTO FavoriteMouse(userID, mouseID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
 
 INSERT INTO FavoritePhone(userID, phoneID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
 
 INSERT INTO FavoriteTablet(userID, tabletID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
 
 INSERT INTO FavoritesHeadphones(userID, HeadphoneID)
-VALUES (3, 1), (4, 2), (5, 3);
+VALUES (3, 1),
+(4, 2),
+(5, 3);
