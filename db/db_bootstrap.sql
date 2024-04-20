@@ -2818,35 +2818,35 @@ VALUES (5,1),
 INSERT INTO UserPost (userID, title)
 VALUES (1, 'Cheap headphones cord breaks'),
 (2, 'Tt Ventus R review'),
-(14, "Looking for new phone")
-(12, "Amazing Camera Quality!")
-(7, "Excellent Battery Life")
-(21, "Fast and Reliable Performance")
-(20, "Sleek Design, Great Sound")
-(24, "Easy Setup and Intuitive Interface")
-(9, "Highly Recommend!")
-(11, "Top-Notch Build Quality")
-(8, "Impressive Display and Performance")
-(23, "Great Value for Money")
-(15, "Excellent Customer Service")
-(24, "Fantastic Performance Upgrade")
-(19, "Beautiful Design, Comfortable Fit")
-(11, "Great Investment for Gamers")
-(10, "Highly Versatile and Portable")
-(1, "Amazing Sound Quality")
-(1, "Efficient Cooling System")
-(9, "Stylish and Functional Design")
-(4, "Great for Productivity")
-(10, "Reliable Data Backup Solution")
-(22, "Superior Gaming Performance")
-(4, "Convenient Wireless Charging")
-(16, "Excellent Picture Quality")
-(21, "Effortless Multitasking")
-(17, "Great for Creative Professionals")
-(19, "Compact and Lightweight")
-(8, "Intuitive User Interface")
-(28, "Fast and Secure Internet")
-(11, "Durable and Long-Lasting")
+(14, "Looking for new phone"),
+(12, "Amazing Camera Quality!"),
+(7, "Excellent Battery Life"),
+(21, "Fast and Reliable Performance"),
+(20, "Sleek Design, Great Sound"),
+(24, "Easy Setup and Intuitive Interface"),
+(9, "Highly Recommend!"),
+(11, "Top-Notch Build Quality"),
+(8, "Impressive Display and Performance"),
+(23, "Great Value for Money"),
+(15, "Excellent Customer Service"),
+(24, "Fantastic Performance Upgrade"),
+(19, "Beautiful Design, Comfortable Fit"),
+(11, "Great Investment for Gamers"),
+(10, "Highly Versatile and Portable"),
+(1, "Amazing Sound Quality"),
+(1, "Efficient Cooling System"),
+(9, "Stylish and Functional Design"),
+(4, "Great for Productivity"),
+(10, "Reliable Data Backup Solution"),
+(22, "Superior Gaming Performance"),
+(4, "Convenient Wireless Charging"),
+(16, "Excellent Picture Quality"),
+(21, "Effortless Multitasking"),
+(17, "Great for Creative Professionals"),
+(19, "Compact and Lightweight"),
+(8, "Intuitive User Interface"),
+(28, "Fast and Secure Internet"),
+(11, "Durable and Long-Lasting"),
 (15, "Efficient Power Management");
 
 INSERT INTO ManufacturerPost (manufacturerID, title)
