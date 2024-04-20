@@ -327,7 +327,15 @@ CREATE TABLE IF NOT EXISTS FavoriteMouse (
 );
 -- Data
 INSERT INTO Users (firstname, lastname, email, username, hash)
-VALUES ('Breanne', 'Elies', 'belies0@examiner.com', 'belies0'),
+VALUES ('Jacob', 'Medici', 'jacobmedici@gmail.com', 'JacobMedici', '!HAhjksa!@#1230alj!@#HJl'),
+('Alec', 'Borer', 'alecborer@gmail.com', 'AlecBorer', '!)*(@JKlsao1930salk!@4320'),
+('Owen ', 'Marshal', 'omarsh@gmail.com', 'OMarsh123', 'ahskjdfhk!@(&*17923981'),
+('Eleanor  ', 'Dean', 'EloBello93@yahoo.com', 'EDean', '12390-9-1230ALKSJasdfD'),
+('Sarah', 'Johnson', 'sarahhhhhjson@aol.com', 'SaJson', '!@*)(#012123JHKSDAKJFsdf'),
+('Michael', 'Anderson', 'Mike.Anderson@kdp.org', 'MikeA', 'asdf!@#123asdfARF'),
+('Mike ', 'Loung', 'milkymikey@cookies.com', 'CookieMike', 'adslfla!&@)*#09ahlksdf123'),
+('Emily  ', 'Rodriguez', 'emifelli@jadslf.gov', 'EmmaBemma', 'ljkdfjlkfds!@30sdaljk!)@#098'),
+('Breanne', 'Elies', 'belies0@examiner.com', 'belies0'),
 ('Melantha', 'Yokley', 'myokley1@github.com', 'myokley1'),
 ('Noby', 'Peert', 'npeert2@drupal.org', 'npeert2'),
 ('Cameron', 'Warstall', 'cwarstall3@webs.com', 'cwarstall3'),
@@ -390,7 +398,16 @@ VALUES ('Breanne', 'Elies', 'belies0@examiner.com', 'belies0'),
 
 
 INSERT INTO Manufacturer (address, biography, manufacturerName)
-VALUES ('200 Digital Way, San Jose, CA 95113', 'Specializes in developing AI solutions for logistics and supply chain management.', 'LogiTech AI'),
+VALUES ('1 Apple Park Way, Cupertino, CA 95014', 'Apple Bio', 'Apple'),
+('13809 Research Blvd, Suite 500 PMB 93206, Austin, Texas 78750', 'Glorious Gaming Bio', 'Glorious Gaming'),
+('Huion Science and Technology Park, Keji 1st Road, Bao''an District, Shenzhen, China.', 'Huion Bio', 'Huion'),
+('1, Samsung-ro, Giheung-gu, Yongin-si, Gyeonggi-do 17113, Korea', 'Samsung Bio', 'Samsung'),
+('1 Dell Way, Round Rock, Texas United States', 'Dell Bio', 'Dell'),
+('15613F-3, No. 508, Sec. 7, Zhongxiao E. Rd., Nangang Dist., Taipei City 115011, Taiwan (R.O.C.)', 'Ducky Bio', 'Ducky'),
+('Cherrystrasse 2 91275 Auerbach/OPf. Germany', 'Cherry Bio', 'Cherry'),
+('1221 Commerce Drive. Stow, Ohio 44224', 'Audio Technica Bio', 'Audio Technica'),
+('Havneholmen 8, DK-2450 Copenhagen SV, Denmark', 'Steelseries Bio', 'Steelseries'),
+('200 Digital Way, San Jose, CA 95113', 'Specializes in developing AI solutions for logistics and supply chain management.', 'LogiTech AI'),
 ('202 Circuit Ln, Seattle, WA 98101', 'A pioneer in cloud computing services offering scalable solutions worldwide.', 'CloudServ Technologies'),
 ('203 Quantum Rd, Cambridge, MA 02139', 'Focuses on quantum computing advancements to solve complex data problems.', 'QuantumCore Inc.'),
 ('204 Silicon Ave, Austin, TX 78701', 'Leading developer of cutting-edge semiconductor chips.', 'NanoChips LLC'),
