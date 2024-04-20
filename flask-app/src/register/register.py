@@ -8,3 +8,7 @@ register = Blueprint('register', __name__)
 @register.route('/', methods=['GET'])
 def register_pages():
     return "register"
+
+@register.route('/add', methods=['POST'])
+def add_user():
+    return "This will add and validate a user with the appropriate fields"
