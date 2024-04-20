@@ -1,6 +1,5 @@
 # Some set up for the application 
-
-from flask import Flask, g
+from flask import Flask, g, redirect
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
@@ -34,12 +33,21 @@ def create_app():
         cursor = database.cursor()
         cursor.execute("SELECT lastName FROM TechDB.Users WHERE firstName = 'Jacob';")
         result = cursor.fetchone()
-        if result:
-            return str(result[0])
-        else:
-            return ""
+        return str(result[0])
     
     # Blueprint stuff
+    from src.laptops.laptops import laptops
+    from src.login.login import login
+    from src.register.register import register
+    from src.peripherals.peripherals import peripherals
+    from src.phones.phones import phones
+
+    app.register_blueprint(laptops, url_prefix='/laptops')
+    app.register_blueprint(login, url_prefix='/login')
+    app.register_blueprint(register, url_prefix='/register')
+    app.register_blueprint(peripherals, url_prefix='/peripherals')
+    app.register_blueprint(phones, url_prefix='/phones')
+
     
     # Don't forget to return the app object
     return app
