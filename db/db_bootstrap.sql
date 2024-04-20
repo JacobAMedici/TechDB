@@ -461,6 +461,66 @@ VALUES ('Linear', 2, 'Red', 2, 'CherryMX Red'),
        ('Tactile', 2, 'Brown', 2, 'CherryMX Brown'),
        ('Clicky', 2, 'Blue', 2, 'CherryMX Blue'),
         ('Linear', 2, 'White', 0.2, 'OmniPoint 2.0 Adjustable HyperMagnetic');
+        INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'red', 2.0, 'CherryMX Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'silver', 1.2, 'Steelseries Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'black', 2.0, 'Razer Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'blue', 2.2, 'Logitech Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'brown', 2.0, 'Corsair Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'green', 1.2, 'HyperX Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'red', 2.0, 'CherryMX Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'silver', 2.2, 'Steelseries Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'black', 2.0, 'Razer Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'blue', 1.2, 'Logitech Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'brown', 2.0, 'Corsair Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'red', 2.0, 'CherryMX Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'silver', 1.2, 'Steelseries Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'black', 2.0, 'Razer Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'blue', 2.2, 'Logitech Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'brown', 2.0, 'Corsair Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'green', 1.2, 'HyperX Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'red', 2.0, 'CherryMX Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'silver', 2.2, 'Steelseries Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'black', 2.0, 'Razer Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'blue', 1.2, 'Logitech Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'brown', 2.0, 'Corsair Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'red', 2.0, 'CherryMX Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'silver', 1.2, 'Steelseries Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'black', 2.0, 'Razer Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'blue', 2.2, 'Logitech Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'brown', 2.0, 'Corsair Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'green', 1.2, 'HyperX Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'red', 2.0, 'CherryMX Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'silver', 2.2, 'Steelseries Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'black', 2.0, 'Razer Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'blue', 1.2, 'Logitech Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'brown', 2.0, 'Corsair Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'red', 2.0, 'CherryMX Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'silver', 1.2, 'Steelseries Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'black', 2.0, 'Razer Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'blue', 2.2, 'Logitech Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'brown', 2.0, 'Corsair Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'green', 1.2, 'HyperX Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'red', 2.0, 'CherryMX Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'silver', 2.2, 'Steelseries Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'black', 2.0, 'Razer Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'blue', 1.2, 'Logitech Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'brown', 2.0, 'Corsair Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'red', 2.0, 'CherryMX Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'silver', 1.2, 'Steelseries Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'black', 2.0, 'Razer Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'blue', 2.2, 'Logitech Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'brown', 2.0, 'Corsair Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'green', 1.2, 'HyperX Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'red', 2.0, 'CherryMX Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'silver', 2.2, 'Steelseries Clicky');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('tactile', 45, 'black', 2.0, 'Razer Tactile');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('speed', 50, 'blue', 1.2, 'Logitech Speed');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('linear', 60, 'brown', 2.0, 'Corsair Linear');
+INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES ('clicky', 55, 'green', 2.2, 'HyperX Clicky');
 
 INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)
 VALUES  (344, 230, 18, 3456, 2160, 16, 1024, 60, 86, 1.86, true, 'RTX 4070', 'i9-13900H', 'Dell XPS 15', 'Windows 11'),
