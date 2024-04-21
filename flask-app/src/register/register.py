@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
+from __init__ import db
 
 
 register = Blueprint('register', __name__)

@@ -1,5 +1,5 @@
 # Some set up for the application 
-from flask import Flask, g, redirect
+from flask import Flask, redirect, render_template, request, session, g
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
@@ -7,7 +7,7 @@ db = MySQL()
 
 def create_app():
     app = Flask(__name__)
-    
+
     # secret key that will be used for securely signing the session 
     # cookie and can be used for any other security related needs by 
     # extensions or your application
@@ -27,13 +27,9 @@ def create_app():
     # Can be accessed from a web browser
     # http://ip_address:port/
     # Example: localhost:8001
-    @app.route("/")
+    @app.route("/<userID>")
     def welcome():
-        database = db.connect()
-        cursor = database.cursor()
-        cursor.execute("SELECT lastName FROM TechDB.Users WHERE firstName = 'Jacob';")
-        result = cursor.fetchone()
-        return str(result[0])
+        return "Welcome to the TechDB!"
     
     # Blueprint stuff
     from src.laptops.laptops import laptops
