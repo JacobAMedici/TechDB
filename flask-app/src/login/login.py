@@ -11,3 +11,6 @@ def login_pages():
 @login.route('/<username>', methods=['GET'])
 def sign_in(username):
     return "This will start the session of the user with that username and validate their login"
+    '''
+    SELECT UserID FROM User WHERE username = <username>;
+    '''
