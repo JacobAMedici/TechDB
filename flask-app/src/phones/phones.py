@@ -68,7 +68,7 @@ def add_phone(userID):
     phoneName = request.form.get("phoneName")
     cursor.execute("INSERT INTO Phone (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,batteryLength, weight, interface, phoneName)" +
                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batteryLength, weight, interface, phoneName))
-    cursor.commit()
+    database.commit()
     return jsonify('Added Phone', 201)
 
 @phones.route('/<userID>/<phone_id>', methods=['POST'])
@@ -76,5 +76,5 @@ def favorite_phone(userID, phone_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%s, %s)", (userID, phone_id))
-    cursor.commit()
+    database.commit()
     return jsonify('Favorited Phone', 201)
