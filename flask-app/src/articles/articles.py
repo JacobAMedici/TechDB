@@ -40,4 +40,5 @@ def add_article(userID):
     cursor = database.cursor()
     cursor.execute("INSERT INTO Post (title, contents) VALUES (%s, %s)", (title, contents))
     cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%s, %s)", (userID, title))
+    cursor.commit()
     return jsonify('Added Post', 201)

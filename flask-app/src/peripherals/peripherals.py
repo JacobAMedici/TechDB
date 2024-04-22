@@ -23,6 +23,7 @@ def favorite_peripheral(userID, peripheralType, peripheral_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO %s (userID, peripheralID) VALUES (%s, %s)", (peripheralType, userID, peripheral_id))
+    cursor.commit()
     return jsonify('Favorited Peripheral', 201)
 
 @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['DELETE'])
@@ -59,6 +60,7 @@ def add_mouse(userID):
     freeScrolling = request.form.get("freeScrolling")
     mouseName = request.form.get("mouseName")
     cursor.execute("INSERT INTO Mouse(description, sensorType, size, weight, freeScrolling, mouseName) VALUES (%s, %s, %s, %s, %s, %s)", (description, sensorType, size, weight, freeScrolling, mouseName))
+    cursor.commit()
     return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/keyboard', methods=['POST'])
@@ -73,6 +75,7 @@ def add_keyboard(userID):
     keyboardID = cursor.fetchone()[0] + 1
     cursor.execute("INSERT INTO Keyboard (backlight, size, keyboardName) VALUSES (%s, %s, %s)", (backlight, size, keyboardName))
     cursor.execute("INSERT INTO Switches (switchID, keyboardID) VALUES (%s, %s)", (switchID, keyboardID))
+    cursor.commit()
     return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/headphones', methods=['POST'])
@@ -85,6 +88,7 @@ def add_headphones(userID):
     description = request.form.get("description")
     headphoneName = request.form.get("headphoneName")
     cursor.execute("INSERT INTO Headphones(numDrivers, bluetooth, microphone, description, headphoneName) VALUES (%s, %s, %s, %s, %s)", (numDrivers, bluetooth, microphone, description, headphoneName))
+    cursor.commit()
     return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/tablet', methods=['POST'])
@@ -100,6 +104,7 @@ def add_tablet(userID):
     storage = request.form.get("storage")
     tabletName = request.form.get("tabletName")
     cursor.execute("INSERT INTO Tablet(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, tabletName) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, tabletName))
+    cursor.commit()
     return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/switch', methods=['POST'])
@@ -112,4 +117,5 @@ def add_switch(userID):
     actuationDistance = request.form.get("actuationDistance")
     switchName = request.form.get("switchName")
     cursor.execute("INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES (%s, %s, %s, %s, %s)", (description, actuationForce, color, actuationDistance, switchName))
+    cursor.commit()
     return jsonify('Added Peripheral', 201)

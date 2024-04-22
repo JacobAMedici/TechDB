@@ -74,6 +74,7 @@ def add_laptops(userID):
     operatingSystem = request.form.get("operatingSystem")
     cursor.execute("INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)" +
                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem))
+    cursor.commit()
     return jsonify('Fresh Laptop', 201)
 
 @laptops.route('/<userID>/<laptop_id>', methods=['POST'])
@@ -81,4 +82,5 @@ def favorite_laptop(userID, laptop_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (%s, %s)", (userID, laptop_id))
+    cursor.commit()
     return redirect('Newly Favorited Laptop', 201)
