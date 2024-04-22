@@ -10,14 +10,30 @@ def phones_pages(userID):
         return "Get Phones Page"
     elif request.method == 'POST':
         phoneID = request.form.get("phoneID")
-        return redirect(f'phones/{userID}/{phoneID}')
+        return redirect(f'/phones/{userID}/{phoneID}')
 
 @phones.route('/<userID>/<phone_id>', methods=['GET'])
 def display_phone(phone_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("SELECT * FROM Phone WHERE phoneID = %i", (phone_id))
-    the_response = make_response(jsonify(cursor.fetchone))
+    cursor.execute("SELECT * FROM Phone WHERE phoneID = %i", (int(phone_id)))
+    result = cursor.fetchone()
+    phone_data = {
+            "phoneID" : result[0],
+            "length" : result[1],
+            "depth" : result[2],
+            "thickness" : result[3],
+            "horizontalResolution" : result[4],
+            "verticalResolution" : result[5],
+            "ram" : result[6],
+            "storage" : result[7],
+            "refreshRate" : result[8],
+            "batteryLength" : result[9],
+            "weight" : result[10],
+            "interface" : result[11],
+            "phoneName" : result[12],
+        }
+    the_response = make_response(jsonify(phone_data))
     return the_response
 
 
@@ -25,7 +41,7 @@ def display_phone(phone_id):
 def delete_phone(phone_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Phone WHERE phoneID = %i", (phone_id))
+    cursor.execute("DELETE FROM Phone WHERE phoneID = %i", (int(phone_id)))
     return redirect("/phones")
 
 @phones.route('/<userID>/add', methods=['POST'])

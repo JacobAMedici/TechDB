@@ -4,21 +4,26 @@ from src import db
 
 articles = Blueprint('articles', __name__)
 
-@articles.route('/<userID>', methods=['GET'])
+@articles.route('/<userID>', methods=['GET', 'POST'])
 def articles_page(userID):
-    return "Articles Page With Search Bar"
+    if request.method == 'GET':
+        return "Articles Page With Search Bar"
+    elif request.method == 'POST':
+        title = request.form.get("title")
+        return redirect(f"/articles/{userID}/{title}")
 
-@articles.route('/<userID>', methods=['POST'])
-def articles_page_submit(userID):
-    title = request.form.get("title")
-    return redirect("/articles/{userID}/{title}")
-
-@articles.route('/<userID>/<title>', methods=['GET'])
+@articles.route('/<userID>/<title>', methods=['GET', 'POST'])
 def display_article(userID, title):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("SELECT * FROM Post WHERE title = %s", (title))
-    the_response = make_response(jsonify(cursor.fetchone))
+    result = cursor.fetchone()
+    article_data = {
+            "title": result[0],
+            "contents": result[2],
+            
+        }
+    the_response = make_response(jsonify(article_data))
     return the_response
 
 
