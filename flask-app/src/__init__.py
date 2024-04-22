@@ -27,10 +27,15 @@ def create_app():
     # Can be accessed from a web browser
     # http://ip_address:port/
     # Example: localhost:8001
+    @app.route("/")
+    def direct_to_login():
+        return redirect("/login")
+    
     @app.route("/<userID>")
-    def welcome():
+    def welcome(userID):
         return "Welcome to the TechDB!"
     
+
     # Blueprint stuff
     from src.laptops.laptops import laptops
     from src.login.login import login

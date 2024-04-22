@@ -1,39 +1,60 @@
-from flask import Blueprint, request, jsonify, make_response, current_app
+from flask import Blueprint, request, jsonify, make_response, current_app, redirect
 import json
 from src import db
 
 laptops = Blueprint('laptops', __name__)
 
-@laptops.route('/')
-def laptop_pages():
-    return "Laptops"
+@laptops.route('/<userID>', methods=['GET', 'POST'])
+def laptop_page(userID):
+    if request.method == 'GET':
+        return "Get Laptops Page"
+    elif request.method == 'POST':
+        laptopID = request.form.get("laptopID")
+        return redirect(f'laptops/{userID}/{laptopID}')
 
-@laptops.route('/<laptop_id>', methods=['GET'])
+
+@laptops.route('/<userID>/<laptop_id>', methods=['GET'])
 def display_laptop(laptop_id):
-    return "This is where we will display the laptop of laptop_id"
-    '''
-    SELECT * FROM Laptop WHERE laptopID = <laptop_id>;
-    '''
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("SELECT * FROM Laptop WHERE laptopID = ?", (laptop_id))
+    the_response = make_response(jsonify(cursor.fetchone))
+    return the_response
 
-@laptops.route('/<laptop_id>', methods=['DELETE'])
+@laptops.route('/<userID>/<laptop_id>', methods=['DELETE'])
 def delete_laptop(laptop_id):
-    return "This is where we will delete the laptop of laptop_id"
-    '''
-    DELETE FROM Laptop WHERE laptopID = <laptop_id>;
-    '''
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("DELETE FROM Laptop WHERE laptopID = ?", (laptop_id))
+    return redirect("/laptops")
 
-@laptops.route('/add', methods=['POST'])
+@laptops.route('/<userID>/add', methods=['POST'])
 def add_laptops():
-    return "This will add an laptop with the appropriate fields"
-    '''
-    INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)
-    VALUES (<length>, <depth>, <thickness>, <horizontalResolution>, <verticalResolution>, <ram>, <storage>, <refreshRate>, <batterySize>, <weight>, <backlitKeyboard>, <GPU>, <CPU>, <laptopName>, <operatingSystem>)
-    INSERT INTO MakesLaptop (manufacturerID, laptopID)
-    '''
+    database = db.connect()
+    cursor = database.cursor()
+    length = request.form.get("length")
+    depth = request.form.get("depth")
+    thickness = request.form.get("thickness")
+    horizontalResolution = request.form.get("horizontalResolution")
+    verticalResolution = request.form.get("verticalResolution")
+    ram = request.form.get("ram")
+    storage = request.form.get("storage")
+    refreshRate = request.form.get("refreshRate")
+    batterySize = request.form.get("batterySize")
+    weight = request.form.get("weight")
+    backlitKeyboard = request.form.get("backlitKeyboard")
+    GPU = request.form.get("GPU")
+    CPU = request.form.get("CPU")
+    laptopName = request.form.get("laptopName")
+    operatingSystem = request.form.get("operatingSystem")
+    cursor.execute("INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)" +
+                   "VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem))
 
-@laptops.route('/<laptop_id>', methods=['GET'])
-def favorite_laptop(laptop_id):
-    return "This is where we will favorite the laptop of laptop_id"
-    '''
-    INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (<userID>, <laptop_id>)
-    '''
+    return redirect(f"/laptops/<userID>")
+
+@laptops.route('/<userID>/<laptop_id>', methods=['GET'])
+def favorite_laptop(userID, laptop_id):
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (?, ?)", (userID, laptop_id))
+    return redirect(f"/laptops/{userID}/{laptop_id}")

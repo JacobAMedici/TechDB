@@ -1,32 +1,44 @@
-from flask import Blueprint, request, jsonify, make_response, current_app
+from flask import Blueprint, request, jsonify, make_response, current_app, redirect
 import json
 from src import db
 
 articles = Blueprint('articles', __name__)
 
-@articles.route('/')
-def articles_pages():
-    return "This is where a search bar will be and maybe below we will have recomended articles"
-    # What would the code look like for this? Would it just redirect when the form is submitted?
+@articles.route('/<userID>', methods=['GET'])
+def articles_page(userID):
+    return "Articles Page With Search Bar"
 
-@articles.route('/<title>', methods=['GET'])
-def display_article(title):
-    return "This is where we will display the article of title"
-    '''
-    SELECT * FROM Post WHERE title = title;
-    '''
+@articles.route('/<userID>', methods=['POST'])
+def articles_page_submit(userID):
+    title = request.form.get("title")
+    return redirect(f"/articles/{userID}{title}")
 
-@articles.route('/<title>', methods=['DELETE'])
-def delete_article(title):
-    return "This is where we will delete the article of title"
-    '''
-    DELETE FROM Post WHERE title = <title>;
-    '''
+@articles.route('/<userID>/<title>', methods=['GET'])
+def display_article(userID, title):
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("SELECT * FROM Post WHERE title = ?", (title))
+    the_response = make_response(jsonify(cursor.fetchone))
+    return the_response
 
-@articles.route('/write', methods=['POST'])
-def add_article():
-    return "This will add an article with the appropriate fields"
-    '''
-    INSERT INTO Post (title, contents) VALUES (<title>, <contents>)
-    INSERT INTO UserPost (userID, title) VALUES (<userID>, <title>)
-    '''
+
+@articles.route('/<userID>/<title>', methods=['DELETE'])
+def delete_article(userID, title):
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("DELETE FROM Post WHERE title = ?", (title))
+    return redirect("/articles")
+
+@articles.route('/<userID>/write', methods=['GET'])
+def articles_writing_page(userID):
+    return "Article Writing Page"
+
+@articles.route('/<userID>/write', methods=['POST'])
+def add_article(userID):
+    title = request.form.get("title")
+    contents = request.form.get("contents")
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("INSERT INTO Post (title, contents) VALUES (?, ?)", (title, contents))
+    cursor.execute("INSERT INTO UserPost (userID, title) VALUES (?, ?)", (userID, title))
+    return redirect(f"/articles/{userID}/{title}")
