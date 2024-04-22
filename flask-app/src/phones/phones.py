@@ -7,10 +7,20 @@ phones = Blueprint('phones', __name__)
 @phones.route('/<userID>', methods=['GET', 'POST'])
 def phones_pages(userID):
     if request.method == 'GET':
-        return "Get Phones Page"
+        cursor = db.get_db().cursor()
+        cursor.execute('SELECT * FROM Phone')
+        row_headers = [x[0] for x in cursor.description]
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(dict(zip(row_headers, row)))
+        the_response = make_response(jsonify(json_data))
+        the_response.status_code = 200
+        the_response.mimetype = 'application/json'
+        return the_response
     elif request.method == 'POST':
         phoneID = request.form.get("phoneID")
-        return redirect(f'/phones/{userID}/{phoneID}')
+    return redirect(f'/phones/{userID}/{phoneID}')
 
 @phones.route('/<userID>/<phone_id>', methods=['GET', 'POST'])
 def display_phone(userID, phone_id):
