@@ -1,5 +1,5 @@
 # Some set up for the application 
-from flask import Flask, redirect, render_template, request, session, g
+from flask import Flask, redirect, render_template, request, session, g, jsonify
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
@@ -33,7 +33,11 @@ def create_app():
     
     @app.route("/<userID>")
     def welcome(userID):
-        return "Welcome to the TechDB!"
+        database = db.connect() 
+        cursor = database.cursor()
+        cursor.execute("SELECT * FROM Users")
+        row = cursor.fetchall()
+        return jsonify(row)
     
 
     # Blueprint stuff
