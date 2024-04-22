@@ -7,14 +7,16 @@ articles = Blueprint('articles', __name__)
 @articles.route('/<userID>', methods=['POST'])
 def articles_page(userID):
     title = request.form.get("title")
-    return redirect('f"/articles/{userID}/{title}"')
-
-@articles.route('/<userID>/<title>', methods=['GET'])
-def display_article(userID, title):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("SELECT * FROM Post WHERE title = %s", (title))
     result = cursor.fetchone()
+    if result == None:
+        blank_data = {
+            "title": "",
+            "contents": "",      
+        }
+        return make_response(jsonify(blank_data))
     article_data = {
             "title": result[0],
             "contents": result[2],      
