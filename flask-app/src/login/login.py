@@ -17,6 +17,7 @@ def login_user():
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("SELECT * FROM Users WHERE username = %s", (request.form.get("username"),))
+    cursor.execute("SELECT * FROM users WHERE username = %s", (request.form.get("username"),))
     # Fetch one result
     row = cursor.fetchone()
     # Check if the row exists

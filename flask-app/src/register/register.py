@@ -40,7 +40,7 @@ def add_user():
     if not request.form.get("username"):
         raise Exception("Must Provide Username")
     # Check if username is taken
-    elif len((cursor().execute("SELECT * FROM users WHERE username = ?", (request.form.get("username"),))).fetchall()) > 0:
+    elif len((cursor().execute("SELECT * FROM users WHERE username = %s", (request.form.get("username"),))).fetchall()) > 0:
         raise Exception("Username is Taken")
     elif c < 1 or didg < 1 or pass_len < 8:
         raise Exception("Password Must Fit Reqirements")
@@ -65,7 +65,7 @@ def add_user():
         cursor.execute("INSERT INTO users ('firstName', 'lastName', 'email', 'username', 'hash') VALUES (:firstName, :lastName, :email, :username, :hash)", newUserInfo)
         # Commit the transaction
         cursor.commit()
-        cursor.execute("SELECT userID FROM users WHERE username = ?", (request.form.get("username"),))
+        cursor.execute("SELECT userID FROM users WHERE username = %s", (request.form.get("username"),))
         return redirect(f"/{cursor.fetchone()['userID']}")
     # Final Step if everything fails
     else:

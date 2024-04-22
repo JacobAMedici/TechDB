@@ -17,7 +17,7 @@ def laptop_page(userID):
 def display_laptop(laptop_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("SELECT * FROM Laptop WHERE laptopID = ?", (laptop_id))
+    cursor.execute("SELECT * FROM Laptop WHERE laptopID = %i", (laptop_id))
     the_response = make_response(jsonify(cursor.fetchone))
     return the_response
 
@@ -25,7 +25,7 @@ def display_laptop(laptop_id):
 def delete_laptop(laptop_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Laptop WHERE laptopID = ?", (laptop_id))
+    cursor.execute("DELETE FROM Laptop WHERE laptopID = %i", (laptop_id))
     return redirect("/laptops")
 
 @laptops.route('/<userID>/add', methods=['POST'])
@@ -48,7 +48,7 @@ def add_laptops():
     laptopName = request.form.get("laptopName")
     operatingSystem = request.form.get("operatingSystem")
     cursor.execute("INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)" +
-                   "VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem))
+                   "VALUES (%f, %f, %f, %i, %i, %i, %i, %f, %f, %f, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem))
 
     return redirect(f"/laptops/<userID>")
 
@@ -56,5 +56,5 @@ def add_laptops():
 def favorite_laptop(userID, laptop_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (?, ?)", (userID, laptop_id))
+    cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (%i, %i)", (userID, laptop_id))
     return redirect(f"/laptops/{userID}/{laptop_id}")

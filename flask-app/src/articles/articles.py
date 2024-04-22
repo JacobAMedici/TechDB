@@ -11,13 +11,13 @@ def articles_page(userID):
 @articles.route('/<userID>', methods=['POST'])
 def articles_page_submit(userID):
     title = request.form.get("title")
-    return redirect(f"/articles/{userID}{title}")
+    return redirect("/articles/{userID}/{title}")
 
 @articles.route('/<userID>/<title>', methods=['GET'])
 def display_article(userID, title):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("SELECT * FROM Post WHERE title = ?", (title))
+    cursor.execute("SELECT * FROM Post WHERE title = %s", (title))
     the_response = make_response(jsonify(cursor.fetchone))
     return the_response
 
@@ -26,7 +26,7 @@ def display_article(userID, title):
 def delete_article(userID, title):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Post WHERE title = ?", (title))
+    cursor.execute("DELETE FROM Post WHERE title = %s", (title))
     return redirect("/articles")
 
 @articles.route('/<userID>/write', methods=['GET'])
@@ -39,6 +39,6 @@ def add_article(userID):
     contents = request.form.get("contents")
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("INSERT INTO Post (title, contents) VALUES (?, ?)", (title, contents))
-    cursor.execute("INSERT INTO UserPost (userID, title) VALUES (?, ?)", (userID, title))
+    cursor.execute("INSERT INTO Post (title, contents) VALUES (%s, %s)", (title, contents))
+    cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%i, %s)", (userID, title))
     return redirect(f"/articles/{userID}/{title}")
