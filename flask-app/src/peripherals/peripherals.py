@@ -7,8 +7,22 @@ peripherals = Blueprint('peripherals', __name__)
 @peripherals.route('/<userID>', methods=['POST'])
 def peripherals_page(userID):
     peripheralType = request.form.get("peripheralType")
-    peripheralID = request.form.get("peripheralID")
-    return redirect(f'peripherals/{userID}/{peripheralType}/{peripheralID}')
+    if not peripheralType:
+        blank_data = {
+            "Please Select A Peripheral Type": "",     
+        }
+        return make_response(jsonify(blank_data))
+    cursor = db.get_db().cursor()
+    cursor.execute(f'SELECT * FROM {peripheralType}')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
     
 @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['GET'])
 def display_peripheral(userID, peripheralType, peripheral_id):
