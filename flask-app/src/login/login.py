@@ -9,10 +9,10 @@ login = Blueprint('login', __name__)
 def login_user():
     # Ensure username was submitted
     if not request.form.get("username"):
-        raise Exception("Must Provide Username")
+        return make_response(jsonify(message='Must Provide Username'), 400)
     # Ensure password was submitted
     elif not request.form.get("password"):
-        raise Exception("Must Provide Password")
+        return make_response(jsonify(message='Must Provide Password'), 400)
     
     database = db.connect()
     cursor = database.cursor()
@@ -23,13 +23,13 @@ def login_user():
 
     # Check if the row exists
     if row is None:
-        raise Exception("Username Not Found")
+        return make_response(jsonify(message='Username Not Found'), 400)
     
     row_dict = dict(zip(row_headers, row))
     
     # Continue with your password check
     if not check_password_hash(row_dict["hash"], request.form.get("password")):
-        raise Exception("Invalid Password")
+        return make_response(jsonify(message='Invalid Password'), 400)
 
     # If everything is correct, remember which user has logged in
     userID = row_dict["userID"]
