@@ -52,7 +52,7 @@ def add_laptops():
 
     return redirect(f"/laptops/<userID>")
 
-@laptops.route('/<userID>/<laptop_id>', methods=['GET'])
+@laptops.route('/<userID>/<laptop_id>', methods=['POST'])
 def favorite_laptop(userID, laptop_id):
     database = db.connect()
     cursor = database.cursor()
