@@ -32,7 +32,7 @@ def login_user():
         raise Exception("Invalid Password")
 
     # If everything is correct, remember which user has logged in
-    userID = row["userID"]
+    userID = row_dict["userID"]
 
     # Redirect user to home page
     return redirect(f"/{userID}")

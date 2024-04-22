@@ -320,9 +320,9 @@ CREATE TABLE IF NOT EXISTS FavoriteMouse (
 
 -- Data
 INSERT INTO Users (firstname, lastname, email, username, hash)
-VALUES ('Jacob', 'Medici', 'jacobmedici@gmail.com', 'JacobMedici', 'admin'),
-('Alec', 'Borer', 'alecborer@gmail.com', 'AlecBorer', 'admin'),
-('Admin', 'Admin', 'Admin@gmail.com', 'Admin', 'admin'),
+VALUES ('Jacob', 'Medici', 'jacobmedici@gmail.com', 'JacobMedici', 'scrypt:32768:8:1$Y8JxljqezGS99igB$0a8723c1a0b2dd7e5733d085743c935c9aa4748efabfb073d67aefb9118f50060afd006f9c4cf315d3d1b5c33df3c97000a8e34a577e208c97050c3a82d94f03'),
+('Alec', 'Borer', 'alecborer@gmail.com', 'AlecBorer', 'scrypt:32768:8:1$Y8JxljqezGS99igB$0a8723c1a0b2dd7e5733d085743c935c9aa4748efabfb073d67aefb9118f50060afd006f9c4cf315d3d1b5c33df3c97000a8e34a577e208c97050c3a82d94f03'),
+('admin', 'admin', 'admin', 'admin', 'admin'),
 ('Owen ', 'Marshal', 'omarsh@gmail.com', 'OMarsh123', 'ahskjdfhk!@(&*17923981'),
 ('Eleanor  ', 'Dean', 'EloBello93@yahoo.com', 'EDean', '12390-9-1230ALKSJasdfD'),
 ('Sarah', 'Johnson', 'sarahhhhhjson@aol.com', 'SaJson', '!@*)(#012123JHKSDAKJFsdf'),
