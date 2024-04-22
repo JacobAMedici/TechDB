@@ -19,11 +19,16 @@ def login_user():
     cursor.execute("SELECT * FROM Users WHERE username = %s", (request.form.get("username"),))
     # Fetch one result
     row = cursor.fetchone()
+    row_headers = [x[0] for x in cursor.description]
+
     # Check if the row exists
     if row is None:
         raise Exception("Username Not Found")
+    
+    row_dict = dict(zip(row_headers, row))
+    
     # Continue with your password check
-    if not check_password_hash(row["hash"], request.form.get("password")):
+    if not check_password_hash(row_dict["hash"], request.form.get("password")):
         raise Exception("Invalid Password")
 
     # If everything is correct, remember which user has logged in
@@ -35,4 +40,5 @@ def login_user():
 @login.route('/', methods=['GET'])
 def login_page():
     # TODO: Make this return the login page
+    return generate_password_hash("admin")
     return "Login page"

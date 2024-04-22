@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Users (
     email VARCHAR(60) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
     hash VARCHAR(255) NOT NULL
-    );
+);
 
 CREATE TABLE IF NOT EXISTS Manufacturer (
     manufacturerID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -320,8 +320,9 @@ CREATE TABLE IF NOT EXISTS FavoriteMouse (
 
 -- Data
 INSERT INTO Users (firstname, lastname, email, username, hash)
-VALUES ('Jacob', 'Medici', 'jacobmedici@gmail.com', 'JacobMedici', '!HAhjksa!@#1230alj!@#HJl'),
-('Alec', 'Borer', 'alecborer@gmail.com', 'AlecBorer', '!)*(@JKlsao1930salk!@4320'),
+VALUES ('Jacob', 'Medici', 'jacobmedici@gmail.com', 'JacobMedici', 'admin'),
+('Alec', 'Borer', 'alecborer@gmail.com', 'AlecBorer', 'admin'),
+('Admin', 'Admin', 'Admin@gmail.com', 'Admin', 'admin'),
 ('Owen ', 'Marshal', 'omarsh@gmail.com', 'OMarsh123', 'ahskjdfhk!@(&*17923981'),
 ('Eleanor  ', 'Dean', 'EloBello93@yahoo.com', 'EDean', '12390-9-1230ALKSJasdfD'),
 ('Sarah', 'Johnson', 'sarahhhhhjson@aol.com', 'SaJson', '!@*)(#012123JHKSDAKJFsdf'),
