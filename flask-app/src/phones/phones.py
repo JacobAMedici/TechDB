@@ -4,15 +4,12 @@ from src import db
 
 phones = Blueprint('phones', __name__)
 
-@phones.route('/<userID>', methods=['GET', 'POST'])
+@phones.route('/<userID>', methods=['POST'])
 def phones_pages(userID):
-    if request.method == 'GET':
-        return "Get Phones Page"
-    elif request.method == 'POST':
-        phoneID = request.form.get("phoneID")
-        return redirect(f'/phones/{userID}/{phoneID}')
+    phoneID = request.form.get("phoneID")
+    return redirect(f'/phones/{userID}/{phoneID}')
 
-@phones.route('/<userID>/<phone_id>', methods=['GET', 'POST'])
+@phones.route('/<userID>/<phone_id>', methods=['POST'])
 def display_phone(userID, phone_id):
     database = db.connect()
     cursor = database.cursor()
@@ -42,7 +39,7 @@ def delete_phone(phone_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("DELETE FROM Phone WHERE phoneID = %s", (int(phone_id)))
-    return redirect("/phones")
+    return jsonify('Deleted Phone', 204)
 
 @phones.route('/<userID>/add', methods=['POST'])
 def add_phone(phone_id):
@@ -62,11 +59,11 @@ def add_phone(phone_id):
     phoneName = request.form.get("phoneName")
     cursor.execute("INSERT INTO Phone (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,batteryLength, weight, interface, phoneName)" +
                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batteryLength, weight, interface, phoneName))
-    return redirect(f"/phones/{phone_id}")
+    return jsonify('Added Phone', 201)
 
 @phones.route('/<userID>/<phone_id>', methods=['POST'])
 def favorite_phone(userID, phone_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%s, %s)", (userID, phone_id))
-    return redirect(f"/phones/{userID}/{phone_id}")
+    return jsonify('Favorited Phone', 201)

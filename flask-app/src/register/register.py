@@ -5,13 +5,8 @@ from werkzeug.security import generate_password_hash
 
 register = Blueprint('register', __name__)
 
-@register.route('/', methods=['GET'])
-def register_page():
-    return "Register Page"
-
 @register.route('/', methods=['POST'])
 def add_user():
-
     database = db.connect()
     cursor = database.cursor()
 
@@ -62,11 +57,18 @@ def add_user():
         # Code for the next two lines is inspired by DinoCoderSaurus at https://cs50.stackexchange.com/questions/34666/finance-pset-register-will-not-insert-user-data
         hashed_pass = generate_password_hash(request.form.get("password"))
         newUserInfo = ({"firstName" : firstName, "lastName" : lastName, "email" : email, "username" : user, "hash" : hashed_pass})
+
+        # Get highest userID before
+        cursor.execute("SELECT MAX(userID) FROM users")
+        highestUserID = cursor.fetchone()[0] + 1
+
         cursor.execute("INSERT INTO users ('firstName', 'lastName', 'email', 'username', 'hash') VALUES (:firstName, :lastName, :email, :username, :hash)", newUserInfo)
         # Commit the transaction
         cursor.commit()
         cursor.execute("SELECT userID FROM users WHERE username = %s", (request.form.get("username"),))
-        return redirect(f"/{cursor.fetchone()['userID']}")
-    # Final Step if everything fails
-    else:
-        return redirect("/register")
+
+        userData = {
+            "userID" : highestUserID
+        }
+
+        return userData

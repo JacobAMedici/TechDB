@@ -4,14 +4,11 @@ from src import db
 
 peripherals = Blueprint('peripherals', __name__)
 
-@peripherals.route('/<userID>', methods=['GET', 'POST'])
+@peripherals.route('/<userID>', methods=['POST'])
 def peripherals_page(userID):
-    if request.method == 'GET':
-        return "Get Peripherals Page"
-    elif request.method == 'POST':
-        peripheralType = request.form.get("peripheralType")
-        peripheralID = request.form.get("peripheralID")
-        return redirect(f'peripherals/{userID}/{peripheralType}/{peripheralID}')
+    peripheralType = request.form.get("peripheralType")
+    peripheralID = request.form.get("peripheralID")
+    return redirect(f'peripherals/{userID}/{peripheralType}/{peripheralID}')
     
 @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['GET'])
 def display_peripheral(userID, peripheralType, peripheral_id):
@@ -26,14 +23,14 @@ def favorite_peripheral(userID, peripheralType, peripheral_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO %s (userID, peripheralID) VALUES (%s, %s)", (peripheralType, userID, peripheral_id))
-    return redirect(f"/peripherals/{userID}/{peripheralType}/{peripheral_id}")
+    return jsonify('Favorited Peripheral', 201)
 
 @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['DELETE'])
 def delete_peripheral(userID, peripheralType, peripheral_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute(f"DELETE FROM {peripheralType} WHERE peripheralID = {peripheral_id}")
-    return redirect("/peripherals")
+    return jsonify('Deleted Peripheral', 204)
 
 @peripherals.route('/<userID>/add', methods=['POST'])
 def add_peripheral(userID):
@@ -62,7 +59,7 @@ def add_mouse(userID):
     freeScrolling = request.form.get("freeScrolling")
     mouseName = request.form.get("mouseName")
     cursor.execute("INSERT INTO Mouse(description, sensorType, size, weight, freeScrolling, mouseName) VALUES (%s, %s, %s, %s, %s, %s)", (description, sensorType, size, weight, freeScrolling, mouseName))
-    return redirect(f"/peripherals/{userID}")
+    return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/keyboard', methods=['POST'])
 def add_keyboard(userID):
@@ -76,7 +73,7 @@ def add_keyboard(userID):
     keyboardID = cursor.fetchone()[0] + 1
     cursor.execute("INSERT INTO Keyboard (backlight, size, keyboardName) VALUSES (%s, %s, %s)", (backlight, size, keyboardName))
     cursor.execute("INSERT INTO Switches (switchID, keyboardID) VALUES (%s, %s)", (switchID, keyboardID))
-    return redirect(f"/peripherals/{userID}")
+    return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/headphones', methods=['POST'])
 def add_headphones(userID):
@@ -88,7 +85,7 @@ def add_headphones(userID):
     description = request.form.get("description")
     headphoneName = request.form.get("headphoneName")
     cursor.execute("INSERT INTO Headphones(numDrivers, bluetooth, microphone, description, headphoneName) VALUES (%s, %s, %s, %s, %s)", (numDrivers, bluetooth, microphone, description, headphoneName))
-    return redirect(f"/peripherals/{userID}")
+    return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/tablet', methods=['POST'])
 def add_tablet(userID):
@@ -103,7 +100,7 @@ def add_tablet(userID):
     storage = request.form.get("storage")
     tabletName = request.form.get("tabletName")
     cursor.execute("INSERT INTO Tablet(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, tabletName) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, tabletName))
-    return redirect(f"/peripherals/{userID}")
+    return jsonify('Added Peripheral', 201)
 
 @peripherals.route('/<userID>/add/switch', methods=['POST'])
 def add_switch(userID):
@@ -115,4 +112,4 @@ def add_switch(userID):
     actuationDistance = request.form.get("actuationDistance")
     switchName = request.form.get("switchName")
     cursor.execute("INSERT INTO Switch (description, actuationForce, color, actuationDistance, switchName) VALUES (%s, %s, %s, %s, %s)", (description, actuationForce, color, actuationDistance, switchName))
-    return redirect(f"/peripherals/{userID}")
+    return jsonify('Added Peripheral', 201)

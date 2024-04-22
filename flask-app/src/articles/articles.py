@@ -4,15 +4,12 @@ from src import db
 
 articles = Blueprint('articles', __name__)
 
-@articles.route('/<userID>', methods=['GET', 'POST'])
+@articles.route('/<userID>', methods=['POST'])
 def articles_page(userID):
-    if request.method == 'GET':
-        return "Articles Page With Search Bar"
-    elif request.method == 'POST':
-        title = request.form.get("title")
-        return redirect(f"/articles/{userID}/{title}")
+    title = request.form.get("title")
+    return redirect('f"/articles/{userID}/{title}"')
 
-@articles.route('/<userID>/<title>', methods=['GET', 'POST'])
+@articles.route('/<userID>/<title>', methods=['GET'])
 def display_article(userID, title):
     database = db.connect()
     cursor = database.cursor()
@@ -33,10 +30,6 @@ def delete_article(userID, title):
     cursor.execute("DELETE FROM Post WHERE title = %s", (title))
     return redirect("/articles")
 
-@articles.route('/<userID>/write', methods=['GET'])
-def articles_writing_page(userID):
-    return "Article Writing Page"
-
 @articles.route('/<userID>/write', methods=['POST'])
 def add_article(userID):
     title = request.form.get("title")
@@ -45,4 +38,4 @@ def add_article(userID):
     cursor = database.cursor()
     cursor.execute("INSERT INTO Post (title, contents) VALUES (%s, %s)", (title, contents))
     cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%s, %s)", (userID, title))
-    return redirect(f"/articles/{userID}/{title}")
+    return jsonify('Added Post', 201)

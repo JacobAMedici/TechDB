@@ -40,7 +40,3 @@ def login_user():
 
     # Return the userID
     return jsonify(userInfo)
-
-@login.route('/', methods=['GET'])
-def login_page():
-    return "Login Page"

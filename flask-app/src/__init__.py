@@ -31,7 +31,7 @@ def create_app():
     def direct_to_login():
         return redirect("/login")
     
-    @app.route("/<userID>", methods=['GET', 'POST'])
+    @app.route("/<userID>", methods=['GET'])
     def welcome(userID):
         return "Welcome to TechDB"
     

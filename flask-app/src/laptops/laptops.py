@@ -4,13 +4,10 @@ from src import db
 
 laptops = Blueprint('laptops', __name__)
 
-@laptops.route('/<userID>', methods=['GET', 'POST'])
+@laptops.route('/<userID>', methods=['POST'])
 def laptop_page(userID):
-    if request.method == 'GET':
-        return "Get Laptops Page"
-    elif request.method == 'POST':
-        laptopID = request.form.get("laptopID")
-        return redirect(f'laptops/{userID}/{laptopID}')
+    laptopID = request.form.get("laptopID")
+    return redirect(f'laptops/{userID}/{laptopID}')
 
 
 @laptops.route('/<userID>/<laptop_id>', methods=['GET'])
@@ -45,7 +42,7 @@ def delete_laptop(userID, laptop_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("DELETE FROM Laptop WHERE laptopID = %s", (laptop_id))
-    return redirect("/laptops")
+    return jsonify('', 204)
 
 @laptops.route('/<userID>/add', methods=['POST'])
 def add_laptops():
@@ -68,12 +65,11 @@ def add_laptops():
     operatingSystem = request.form.get("operatingSystem")
     cursor.execute("INSERT INTO Laptop (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem)" +
                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batterySize, weight, backlitKeyboard, GPU, CPU, laptopName, operatingSystem))
-
-    return redirect(f"/laptops/<userID>")
+    return jsonify('Fresh Laptop', 201)
 
 @laptops.route('/<userID>/<laptop_id>', methods=['POST'])
 def favorite_laptop(userID, laptop_id):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (%s, %s)", (userID, laptop_id))
-    return redirect(f"/laptops/{userID}/{laptop_id}")
+    return redirect('Newly Favorited Laptop', 201)
