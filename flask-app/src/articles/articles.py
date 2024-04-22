@@ -44,5 +44,5 @@ def add_article(userID):
     database = db.connect()
     cursor = database.cursor()
     cursor.execute("INSERT INTO Post (title, contents) VALUES (%s, %s)", (title, contents))
-    cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%i, %s)", (userID, title))
+    cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%s, %s)", (userID, title))
     return redirect(f"/articles/{userID}/{title}")
