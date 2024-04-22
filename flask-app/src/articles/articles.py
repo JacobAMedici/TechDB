@@ -25,12 +25,14 @@ def articles_page(userID):
     return the_response
 
 
-@articles.route('/<userID>/<title>', methods=['DELETE'])
-def delete_article(userID, title):
+@articles.route('/<userID>/delete', methods=['DELETE'])
+def delete_article(userID):
     database = db.connect()
     cursor = database.cursor()
+    title = request.form.get("title")
     cursor.execute("DELETE FROM Post WHERE title = %s", (title))
-    return redirect("/articles")
+    database.commit()
+    return jsonify('', 204)
 
 @articles.route('/<userID>/write', methods=['POST'])
 def add_article(userID):
