@@ -4,10 +4,19 @@ from src import db
 
 laptops = Blueprint('laptops', __name__)
 
-@laptops.route('/<userID>', methods=['POST'])
+@laptops.route('/<userID>', methods=['GET'])
 def laptop_page(userID):
-    laptopID = request.form.get("laptopID")
-    return redirect(f'laptops/{userID}/{laptopID}')
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT * FROM Laptop')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
 
 
 @laptops.route('/<userID>/<laptop_id>', methods=['GET'])
@@ -45,7 +54,7 @@ def delete_laptop(userID, laptop_id):
     return jsonify('', 204)
 
 @laptops.route('/<userID>/add', methods=['POST'])
-def add_laptops():
+def add_laptops(userID):
     database = db.connect()
     cursor = database.cursor()
     length = request.form.get("length")
