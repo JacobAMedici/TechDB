@@ -20,8 +20,7 @@ def display_article(userID, title):
     result = cursor.fetchone()
     article_data = {
             "title": result[0],
-            "contents": result[2],
-            
+            "contents": result[2],      
         }
     the_response = make_response(jsonify(article_data))
     return the_response

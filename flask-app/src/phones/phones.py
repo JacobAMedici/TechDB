@@ -12,11 +12,11 @@ def phones_pages(userID):
         phoneID = request.form.get("phoneID")
         return redirect(f'/phones/{userID}/{phoneID}')
 
-@phones.route('/<userID>/<phone_id>', methods=['GET'])
-def display_phone(phone_id):
+@phones.route('/<userID>/<phone_id>', methods=['GET', 'POST'])
+def display_phone(userID, phone_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("SELECT * FROM Phone WHERE phoneID = %i", (int(phone_id)))
+    cursor.execute("SELECT * FROM Phone WHERE phoneID = %s", (int(phone_id)))
     result = cursor.fetchone()
     phone_data = {
             "phoneID" : result[0],
@@ -41,7 +41,7 @@ def display_phone(phone_id):
 def delete_phone(phone_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Phone WHERE phoneID = %i", (int(phone_id)))
+    cursor.execute("DELETE FROM Phone WHERE phoneID = %s", (int(phone_id)))
     return redirect("/phones")
 
 @phones.route('/<userID>/add', methods=['POST'])
@@ -61,12 +61,12 @@ def add_phone(phone_id):
     interface = request.form.get("interface")
     phoneName = request.form.get("phoneName")
     cursor.execute("INSERT INTO Phone (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,batteryLength, weight, interface, phoneName)" +
-                   "VALUES (%f, %f, %f, %i, %i, %i, %i, %f, %f, %f, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batteryLength, weight, interface, phoneName))
+                   "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batteryLength, weight, interface, phoneName))
     return redirect(f"/phones/{phone_id}")
 
 @phones.route('/<userID>/<phone_id>', methods=['POST'])
 def favorite_phone(userID, phone_id):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%i, %i)", (userID, phone_id))
+    cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%s, %s)", (userID, phone_id))
     return redirect(f"/phones/{userID}/{phone_id}")
