@@ -33,6 +33,8 @@ def create_app():
     
     @app.route("/<userID>")
     def welcome(userID):
+        # return "Welcome to TechDB"
+
         database = db.connect() 
         cursor = database.cursor()
         cursor.execute("SELECT * FROM Users")

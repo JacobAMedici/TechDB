@@ -7,6 +7,9 @@ create database TechDB;
 
 use TechDB;
 
+grant all privileges on TechDB.* to 'webapp'@'%';
+flush privileges;
+
 -- DDL
 use TechDB;
 
