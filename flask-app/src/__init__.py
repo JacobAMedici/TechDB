@@ -1,5 +1,5 @@
 # Some set up for the application 
-from flask import Flask, redirect, render_template, request, session, g, jsonify
+from flask import Flask, redirect, render_template, request, session, g, jsonify, url_for
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
@@ -27,11 +27,11 @@ def create_app():
     # Can be accessed from a web browser
     # http://ip_address:port/
     # Example: localhost:8001
-    @app.route("/")
+    @app.route("/", methods=['GET'])
     def direct_to_login():
         return redirect("/login")
     
-    @app.route("/<userID>")
+    @app.route("/<userID>", methods=['GET', 'POST'])
     def welcome(userID):
         return "Welcome to TechDB"
     

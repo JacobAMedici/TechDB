@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, current_app, redirect
+from flask import Blueprint, request, jsonify, make_response, current_app, redirect, url_for
 import json
 from src import db
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -39,6 +39,4 @@ def login_user():
 
 @login.route('/', methods=['GET'])
 def login_page():
-    # TODO: Make this return the login page
-    return generate_password_hash("admin")
-    return "Login page"
+    return "Login Page"
