@@ -51,7 +51,7 @@ def add_user():
     elif request.form.get("confirmation") != request.form.get("password"):
         return make_response(jsonify(message='Passwords Must Match'), 400)
     # Put it in the data base and return to the home page
-    elif request.form.get("confirmation") == request.form.get("password"):
+    else:
         firstname = request.form.get("firstname")
         lastname = request.form.get("lastname")
         email = request.form.get("email")
