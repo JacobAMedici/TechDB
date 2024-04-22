@@ -46,11 +46,13 @@ def display_laptop(userID, laptop_id):
     the_response = make_response(jsonify(laptop_data))
     return the_response
 
-@laptops.route('/<userID>/<laptop_id>', methods=['DELETE'])
-def delete_laptop(userID, laptop_id):
+@laptops.route('/<userID>/delete', methods=['DELETE'])
+def delete_laptop(userID):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Laptop WHERE laptopID = %s", (laptop_id))
+    laptop_id = request.form.get("laptopID")
+    cursor.execute(f"DELETE FROM Laptop WHERE laptopID = {laptop_id}")
+    database.commit()
     return jsonify('', 204)
 
 @laptops.route('/<userID>/add', methods=['POST'])

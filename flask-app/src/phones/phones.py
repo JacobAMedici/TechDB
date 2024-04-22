@@ -43,11 +43,13 @@ def display_phone(userID, phone_id):
     return the_response
 
 
-@phones.route('/<userID>/<phone_id>', methods=['DELETE'])
-def delete_phone(phone_id):
+@phones.route('/<userID>/delete', methods=['DELETE'])
+def delete_phone(userID):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute("DELETE FROM Phone WHERE phoneID = %s", (int(phone_id)))
+    phone_id = request.form.get("phoneID")
+    cursor.execute("DELETE FROM Phone WHERE phoneID = %s", phone_id)
+    database.commit()
     return jsonify('Deleted Phone', 204)
 
 @phones.route('/<userID>/add', methods=['POST'])
