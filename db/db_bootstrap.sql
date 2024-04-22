@@ -895,7 +895,7 @@ VALUES ('Comfortable, ergonomic mouse fit for the office.', 'Optical', '120x79x7
 ('Durable, long-lasting, and designed for everyday computing.', 'Optical', '123x71x38', 95, false, 'Daily Essential');
 
 
-INSERT INTO Phone(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate,batteryLength, weight, interface, phoneName)
+INSERT INTO Phone(length, depth, thickness, horizontalResolution, verticalResolution, ram, storage, refreshRate, batteryLength, weight, interface, phoneName)
 VALUES (149.6, 71.45, 8.25, 1179, 2556, 6, 1000, 60, 16, 171, 'USB-C', 'Iphone 15'),
 (146.3, 70.9, 7.6, 2340, 1080, 8, 512, 120, 10, 168.1127, 'USB-C', 'Samsung Galaxy s23'),
 (146.7, 71.5, 7.65, 2532, 1170, 4, 128, 60, 17, 174, 'Lighting connector', 'Iphone 13'),
