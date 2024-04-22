@@ -34,8 +34,12 @@ def login_user():
     # If everything is correct, remember which user has logged in
     userID = row_dict["userID"]
 
-    # Redirect user to home page
-    return redirect(f"/{userID}")
+    userInfo = {
+        "userID" : userID
+    }
+
+    # Return the userID
+    return jsonify(userInfo)
 
 @login.route('/', methods=['GET'])
 def login_page():
