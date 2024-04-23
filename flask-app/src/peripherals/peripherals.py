@@ -48,9 +48,10 @@ def delete_peripheral(userID):
         peripheralID_Column = "KeyboardID"
     if peripheralType == "Headphones":
         peripheralID_Column = "HeadphoneID"
-    if peripheralID_Column == "Switch":
+    if peripheralType == "Switch":
         peripheralID_Column = "switchID"
     cursor.execute(f"DELETE FROM {peripheralType} WHERE {peripheralID_Column} = {peripheral_id}")
+    database.commit()
     return jsonify('Deleted Peripheral', 204)
 
 # @peripherals.route('/<userID>/add', methods=['POST'])
