@@ -20,3 +20,4 @@
     implementation of favoriting can be found in the Github repository.
 
 -- Video --
+https://youtu.be/lktUU_CyteI
