@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, current_app, redirect
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 from werkzeug.security import generate_password_hash
