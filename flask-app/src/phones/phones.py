@@ -18,29 +18,29 @@ def phones_pages(userID):
     the_response.mimetype = 'application/json'
     return the_response
 
-@phones.route('/<userID>/<phone_id>', methods=['POST'])
-def display_phone(userID, phone_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute("SELECT * FROM Phone WHERE phoneID = %s", (int(phone_id)))
-    result = cursor.fetchone()
-    phone_data = {
-            "phoneID" : result[0],
-            "length" : result[1],
-            "depth" : result[2],
-            "thickness" : result[3],
-            "horizontalResolution" : result[4],
-            "verticalResolution" : result[5],
-            "ram" : result[6],
-            "storage" : result[7],
-            "refreshRate" : result[8],
-            "batteryLength" : result[9],
-            "weight" : result[10],
-            "interface" : result[11],
-            "phoneName" : result[12],
-        }
-    the_response = make_response(jsonify(phone_data))
-    return the_response
+# @phones.route('/<userID>/<phone_id>', methods=['POST'])
+# def display_phone(userID, phone_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute("SELECT * FROM Phone WHERE phoneID = %s", (int(phone_id)))
+#     result = cursor.fetchone()
+#     phone_data = {
+#             "phoneID" : result[0],
+#             "length" : result[1],
+#             "depth" : result[2],
+#             "thickness" : result[3],
+#             "horizontalResolution" : result[4],
+#             "verticalResolution" : result[5],
+#             "ram" : result[6],
+#             "storage" : result[7],
+#             "refreshRate" : result[8],
+#             "batteryLength" : result[9],
+#             "weight" : result[10],
+#             "interface" : result[11],
+#             "phoneName" : result[12],
+#         }
+#     the_response = make_response(jsonify(phone_data))
+#     return the_response
 
 
 @phones.route('/<userID>/delete', methods=['DELETE'])
@@ -73,10 +73,10 @@ def add_phone(userID):
     database.commit()
     return jsonify('Added Phone', 201)
 
-@phones.route('/<userID>/<phone_id>', methods=['POST'])
-def favorite_phone(userID, phone_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%s, %s)", (userID, phone_id))
-    database.commit()
-    return jsonify('Favorited Phone', 201)
+# @phones.route('/<userID>/<phone_id>', methods=['POST'])
+# def favorite_phone(userID, phone_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute("INSERT INTO FavoritePhone (userID, phoneID) VALUES (%s, %s)", (userID, phone_id))
+#     database.commit()
+#     return jsonify('Favorited Phone', 201)

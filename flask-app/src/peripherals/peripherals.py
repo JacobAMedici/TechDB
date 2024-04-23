@@ -4,7 +4,7 @@ from src import db
 
 peripherals = Blueprint('peripherals', __name__)
 
-@peripherals.route('/<userID>', methods=['POST'])
+@peripherals.route('/<userID>', methods=['GET'])
 def peripherals_page(userID):
     peripheralType = request.form.get("peripheralType")
     cursor = db.get_db().cursor()
@@ -19,21 +19,21 @@ def peripherals_page(userID):
     the_response.mimetype = 'application/json'
     return the_response
     
-@peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['GET'])
-def display_peripheral(userID, peripheralType, peripheral_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute(f"SELECT * FROM {peripheralType} WHERE peripheralID = {peripheral_id}")
-    the_response = make_response(jsonify(cursor.fetchone()))
-    return the_response
+# @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['GET'])
+# def display_peripheral(userID, peripheralType, peripheral_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute(f"SELECT * FROM {peripheralType} WHERE peripheralID = {peripheral_id}")
+#     the_response = make_response(jsonify(cursor.fetchone()))
+#     return the_response
 
-@peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['POST'])
-def favorite_peripheral(userID, peripheralType, peripheral_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute("INSERT INTO %s (userID, peripheralID) VALUES (%s, %s)", (peripheralType, userID, peripheral_id))
-    database.commit()
-    return jsonify('Favorited Peripheral', 201)
+# @peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['POST'])
+# def favorite_peripheral(userID, peripheralType, peripheral_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute("INSERT INTO %s (userID, peripheralID) VALUES (%s, %s)", (peripheralType, userID, peripheral_id))
+#     database.commit()
+#     return jsonify('Favorited Peripheral', 201)
 
 @peripherals.route('/<userID>/delete', methods=['DELETE'])
 def delete_peripheral(userID):
@@ -53,21 +53,21 @@ def delete_peripheral(userID):
     cursor.execute(f"DELETE FROM {peripheralType} WHERE {peripheralID_Column} = {peripheral_id}")
     return jsonify('Deleted Peripheral', 204)
 
-@peripherals.route('/<userID>/add', methods=['POST'])
-def add_peripheral(userID):
-    database = db.connect()
-    cursor = database.cursor()
-    peripheralType = request.form.get("peripheralType")
-    if peripheralType == "Mouse":
-        return redirect("/peripherals/<userID>/add/mouse")
-    elif peripheralType == "Keyboard":
-        return redirect("/peripherals/<userID>/add/keyboard")
-    elif peripheralType == "Headphones":
-        return redirect("/peripherals/<userID>/add/headphones")
-    elif peripheralType == "Tablet":
-        return redirect("/peripherals/<userID>/add/tablet")
-    elif peripheralType == "Switch":
-        return redirect("/peripherals/<userID>/add/switch")
+# @peripherals.route('/<userID>/add', methods=['POST'])
+# def add_peripheral(userID):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     peripheralType = request.form.get("peripheralType")
+#     if peripheralType == "Mouse":
+#         return redirect("/peripherals/<userID>/add/mouse")
+#     elif peripheralType == "Keyboard":
+#         return redirect("/peripherals/<userID>/add/keyboard")
+#     elif peripheralType == "Headphones":
+#         return redirect("/peripherals/<userID>/add/headphones")
+#     elif peripheralType == "Tablet":
+#         return redirect("/peripherals/<userID>/add/tablet")
+#     elif peripheralType == "Switch":
+#         return redirect("/peripherals/<userID>/add/switch")
     
 @peripherals.route('/<userID>/add/mouse', methods=['POST'])
 def add_mouse(userID):

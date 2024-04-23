@@ -19,32 +19,32 @@ def laptop_page(userID):
     return the_response
 
 
-@laptops.route('/<userID>/<laptop_id>', methods=['GET'])
-def display_laptop(userID, laptop_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute("SELECT * FROM Laptop WHERE laptopID = %s", (laptop_id))
-    laptop = cursor.fetchone()
-    laptop_data = {
-        "laptopID": laptop[0],
-        "length": laptop[1],
-        "depth": laptop[2],
-        "thickness": laptop[3],
-        "horizontalResolution": laptop[4],
-        "verticalResolution": laptop[5],
-        "ram":laptop[6],
-        "storage": laptop[7],
-        "refreshRate": laptop[8],
-        "batterySize": laptop[9],
-        "weight": laptop[10],
-        "backlitKeyboard": laptop[11],
-        "GPU": laptop[12],
-        "CPU": laptop[13],
-        "laptopName": laptop[14],
-        "operatingSystem": laptop[15]
-    }
-    the_response = make_response(jsonify(laptop_data))
-    return the_response
+# @laptops.route('/<userID>/<laptop_id>', methods=['GET'])
+# def display_laptop(userID, laptop_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute("SELECT * FROM Laptop WHERE laptopID = %s", (laptop_id))
+#     laptop = cursor.fetchone()
+#     laptop_data = {
+#         "laptopID": laptop[0],
+#         "length": laptop[1],
+#         "depth": laptop[2],
+#         "thickness": laptop[3],
+#         "horizontalResolution": laptop[4],
+#         "verticalResolution": laptop[5],
+#         "ram":laptop[6],
+#         "storage": laptop[7],
+#         "refreshRate": laptop[8],
+#         "batterySize": laptop[9],
+#         "weight": laptop[10],
+#         "backlitKeyboard": laptop[11],
+#         "GPU": laptop[12],
+#         "CPU": laptop[13],
+#         "laptopName": laptop[14],
+#         "operatingSystem": laptop[15]
+#     }
+#     the_response = make_response(jsonify(laptop_data))
+#     return the_response
 
 @laptops.route('/<userID>/delete', methods=['DELETE'])
 def delete_laptop(userID):
@@ -79,10 +79,10 @@ def add_laptops(userID):
     database.commit()
     return jsonify('Fresh Laptop', 201)
 
-@laptops.route('/<userID>/<laptop_id>', methods=['POST'])
-def favorite_laptop(userID, laptop_id):
-    database = db.connect()
-    cursor = database.cursor()
-    cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (%s, %s)", (userID, laptop_id))
-    database.commit()
-    return redirect('Newly Favorited Laptop', 201)
+# @laptops.route('/<userID>/<laptop_id>', methods=['POST'])
+# def favorite_laptop(userID, laptop_id):
+#     database = db.connect()
+#     cursor = database.cursor()
+#     cursor.execute("INSERT INTO FavoriteLaptop (userID, laptopID) VALUES (%s, %s)", (userID, laptop_id))
+#     database.commit()
+#     return redirect('Newly Favorited Laptop', 201)
