@@ -1,5 +1,5 @@
 -- Docker --
-* Docker Compose Down
+* Docker Compose Down (If already ran)
 * Docker Compose Build
 * Docker Compose Up
 
