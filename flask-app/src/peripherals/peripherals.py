@@ -7,7 +7,7 @@ peripherals = Blueprint('peripherals', __name__)
 @peripherals.route('/<userID>', methods=['POST'])
 def peripherals_page(userID):
     peripheralType = request.form.get("peripheralType")
-    if not peripheralType:
+    if peripheralType == "nothing":
         blank_data = {
             "Please Select A Peripheral Type": "",     
         }
@@ -40,11 +40,22 @@ def favorite_peripheral(userID, peripheralType, peripheral_id):
     database.commit()
     return jsonify('Favorited Peripheral', 201)
 
-@peripherals.route('/<userID>/<peripheralType>/<peripheral_id>', methods=['DELETE'])
-def delete_peripheral(userID, peripheralType, peripheral_id):
+@peripherals.route('/<userID>/delete', methods=['DELETE'])
+def delete_peripheral(userID):
     database = db.connect()
     cursor = database.cursor()
-    cursor.execute(f"DELETE FROM {peripheralType} WHERE peripheralID = {peripheral_id}")
+    peripheralType = request.form.get("peripheralType")
+    peripheral_id = request.form.get("peripheralID")
+    peripheralID_Column = "tabletID"
+    if peripheralType == "Mouse":
+        peripheralID_Column = "mouseID"
+    if peripheralType == "Keyboard":
+        peripheralID_Column = "KeyboardID"
+    if peripheralType == "Headphones":
+        peripheralID_Column = "HeadphoneID"
+    if peripheralID_Column == "Switch":
+        peripheralID_Column = "switchID"
+    cursor.execute(f"DELETE FROM {peripheralType} WHERE {peripheralID_Column} = {peripheral_id}")
     return jsonify('Deleted Peripheral', 204)
 
 @peripherals.route('/<userID>/add', methods=['POST'])
@@ -86,9 +97,9 @@ def add_keyboard(userID):
     keyboardName = request.form.get("keyboardName")
     switchID = request.form.get("switchID")
     cursor.execute("SELECT MAX(keyboardID) FROM Keyboard")
-    keyboardID = cursor.fetchone()[0] + 1
-    cursor.execute("INSERT INTO Keyboard (backlight, size, keyboardName) VALUSES (%s, %s, %s)", (backlight, size, keyboardName))
-    cursor.execute("INSERT INTO Switches (switchID, keyboardID) VALUES (%s, %s)", (switchID, keyboardID))
+    keyboardID = cursor.fetchone()[0]
+    cursor.execute("INSERT INTO Keyboard (backlight, size, keyboardName) VALUES (%s, %s, %s)", (backlight, size, keyboardName))
+    cursor.execute("INSERT INTO UsesSwitch (switchID, keyboardID) VALUES (%s, %s)", (switchID, keyboardID))
     database.commit()
     return jsonify('Added Peripheral', 201)
 
