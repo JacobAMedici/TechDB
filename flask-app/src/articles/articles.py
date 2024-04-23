@@ -44,3 +44,13 @@ def add_article(userID):
     cursor.execute("INSERT INTO UserPost (userID, title) VALUES (%s, %s)", (userID, title))
     database.commit()
     return jsonify('Added Post', 201)
+
+@articles.route('/<userID>/edit', methods=['PUT'])
+def edit_article(userID):
+    title = request.form.get("title")
+    contents = request.form.get("contents")
+    database = db.connect()
+    cursor = database.cursor()
+    cursor.execute("UPDATE Post SET contents = %s WHERE title = %s", (contents, title))
+    database.commit()
+    return jsonify('Updated Post', 206)
